@@ -1,0 +1,9 @@
+{
+  "name": "respectively-artificial",
+  "version": "0.1.0",
+  "title": "Respectively Artificial",
+  "author": "EightMDB",
+  "factorio_version": "1.1",
+  "dependencies": ["base >= 1.1"],
+  "description": "A new Factorio mod."
+}
