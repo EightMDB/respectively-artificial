@@ -1,97 +1,6 @@
 data:extend({
     {
         type = "assembling-machine",
-        name = "hydroelectric-plant",
-        icon = "__base__/graphics/icons/chemical-plant.png",
-        icon_size = 64,
-        flags = {"placeable-neutral", "placeable-player", "player-creation"},
-        minable = {mining_time = 0.5, result = "hydroelectric-plant"},
-        max_health = 300,
-        corpse = "chemical-plant-remnants",
-        crafting_categories = {"chemistry"},
-        crafting_speed = 1.25,
-        energy_source = {
-            type = "electric",
-            usage_priority = "secondary-input",
-            emissions_per_minute = 2
-        },
-        energy_usage = "150kW",
-        animation = {
-            filename = "__base__/graphics/entity/chemical-plant/chemical-plant.png",
-            width = 108,
-            height = 148,
-            frame_count = 24,
-            line_length = 12,
-            shift = util.by_pixel(1, -9),
-            hr_version = {
-                filename = "__base__/graphics/entity/chemical-plant/hr-chemical-plant.png",
-                width = 220,
-                height = 292,
-                frame_count = 24,
-                line_length = 12,
-                shift = util.by_pixel(1, -8),
-                scale = 0.5
-            }
-        },
-        working_visualisations = {
-            {
-                animation = {
-                    filename = "__base__/graphics/entity/chemical-plant/chemical-plant-working.png",
-                    width = 36,
-                    height = 20,
-                    frame_count = 24,
-                    line_length = 12,
-                    shift = util.by_pixel(0, 5),
-                    hr_version = {
-                        filename = "__base__/graphics/entity/chemical-plant/hr-chemical-plant-working.png",
-                        width = 68,
-                        height = 40,
-                        frame_count = 24,
-                        line_length = 12,
-                        shift = util.by_pixel(0, 5),
-                        scale = 0.5
-                    }
-                }
-            }
-        },
-        vehicle_impact_sound = {filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65},
-        working_sound = {
-            sound = {filename = "__base__/sound/chemical-plant-3.ogg"},
-            apparent_volume = 1.5
-        },
-        fluid_boxes = {
-            {
-                production_type = "input",
-                pipe_covers = pipecoverspictures(),
-                base_area = 10,
-                base_level = -1,
-                pipe_connections = {{type = "input", position = {-1, -2}}}
-            },
-            {
-                production_type = "input",
-                pipe_covers = pipecoverspictures(),
-                base_area = 10,
-                base_level = -1,
-                pipe_connections = {{type = "input", position = {1, -2}}}
-            },
-            {
-                production_type = "output",
-                pipe_covers = pipecoverspictures(),
-                base_level = 1,
-                pipe_connections = {{position = {-1, 2}}}
-            },
-            {
-                production_type = "output",
-                pipe_covers = pipecoverspictures(),
-                base_level = 1,
-                pipe_connections = {{position = {1, 2}}}
-            }
-        },
-        collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
-        selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
-    },
-    {
-        type = "assembling-machine",
         name = "grinder",
         icon = "__base__/graphics/icons/assembling-machine-1.png",
         icon_size = 64,
@@ -139,7 +48,8 @@ data:extend({
         energy_source = {
             type = "electric",
             usage_priority = "secondary-input",
-            emissions_per_minute = 4
+            emissions_per_minute = {pollution = 4.0},
+            drain = "3.75kW"
         },
         energy_usage = "75kW",
         working_sound = {
@@ -176,7 +86,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = -1,
-                pipe_connections = {{ type="input", position = {0, -2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="input", position = {0, -1}, direction = defines.direction.north }}
             },
             {
                 production_type = "output",
@@ -184,7 +95,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = 1,
-                pipe_connections = {{ type="output", position = {0, 2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="output", position = {0, 1}, direction = defines.direction.south }}
             }
         },
         collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
@@ -219,7 +131,7 @@ data:extend({
         energy_source = {
             type = "electric",
             usage_priority = "secondary-input",
-            emissions_per_minute = 6
+            emissions_per_minute = {pollution = 6}
         },
         energy_usage = "150kW",
         working_sound = {
@@ -256,7 +168,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = -1,
-                pipe_connections = {{ type="input", position = {0, -2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="input", position = {0, -1}, direction = defines.direction.north }}
             },
             {
                 production_type = "output",
@@ -264,7 +177,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = 1,
-                pipe_connections = {{ type="output", position = {0, 2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="output", position = {0, 1}, direction = defines.direction.south }}
             }
         },
         collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
@@ -299,7 +213,7 @@ data:extend({
         energy_source = {
             type = "electric",
             usage_priority = "secondary-input",
-            emissions_per_minute = 8
+            emissions_per_minute = {pollution = 8}
         },
         energy_usage = "200kW",
         working_sound = {
@@ -336,7 +250,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = -1,
-                pipe_connections = {{ type="input", position = {-1, -2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="input", position = {-2, -2}, direction = defines.direction.north }}
             },
             {
                 production_type = "input",
@@ -344,7 +259,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = -1,
-                pipe_connections = {{ type="input", position = {1, -2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="input", position = {2, -2}, direction = defines.direction.north }}
             },
             {
                 production_type = "output",
@@ -352,7 +268,8 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = 1,
-                pipe_connections = {{ type="output", position = {-1, 2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="output", position = {-2, 2}, direction = defines.direction.south }}
             },
             {
                 production_type = "output",
@@ -360,11 +277,12 @@ data:extend({
                 pipe_covers = pipecoverspictures(),
                 base_area = 10,
                 base_level = 1,
-                pipe_connections = {{ type="output", position = {1, 2} }}
+                volume = 100,
+                pipe_connections = {{ FluidFlowDirection="output", position = {2, 2}, direction = defines.direction.south }}
             }
         },
-        collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
-        selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
+        collision_box = {{-2.2, -2.2}, {2.2, 2.2}},
+        selection_box = {{-2.5, -2.5}, {2.5, 2.5}},
         animation = {
             filename = "__base__/graphics/entity/chemical-plant/chemical-plant.png",
             width = 108,
@@ -408,7 +326,7 @@ data:extend({
         energy_source = {
             type = "electric",
             usage_priority = "secondary-input",
-            emissions_per_minute = 2
+            emissions_per_minute = {pollution = 2}
         },
         energy_usage = "300kW",
         working_sound = {
